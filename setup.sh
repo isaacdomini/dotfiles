@@ -1,4 +1,4 @@
-#install wget
+#install wget
 echo "Installing wget"
 sudo apt-get install wget
 #install curl
@@ -32,7 +32,7 @@ sudo apt-get install google-chrome-stable
 echo "Installing docker"
 sudo apt-get install \
     apt-transport-https \
-    ca-certificates \
+    ca-certificates \ 
     curl \
     software-properties-common
 
@@ -55,3 +55,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo groupadd docker
 sudo gpasswd -a ${USER} docker
 sudo service docker restart
+echo "INSTALLING NERD TREE"
+curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | sh 
+source ~/.zshrc
+apt-vim install -y https://github.com/scrooloose/nerdtree.git
+sudo sh -c 'echo "autocm vimenter * NERDTree" >> ~/.vimrc'
