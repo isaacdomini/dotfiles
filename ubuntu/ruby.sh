@@ -5,13 +5,4 @@ source /home/cyriac/.rvm/scripts/rvm
 rvm get stable --autolibs=enable
 rvm install ruby
 rvm --default use ruby-2.4.0
-echo "\n\n\n\n..........................\nInstalling NodeJS\n.................\n"
-gem update --system
-rvm gemset use global
-gem update
-echo "gem: --no-document" >> ~/.gemrc
-gem install bundler
-gem install nokogiri
-gem install rails --version=5.0.2
-
 
