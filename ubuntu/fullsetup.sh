@@ -1,5 +1,6 @@
 #!/bin/bash
-#install wget
+#install wget
+echo "\n\n...Installing Essential Tools...\n\n"
 echo "Installing wget"
 sudo apt-get install wget
 #install curl
@@ -28,3 +29,5 @@ curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | s
 source ~/.zshrc
 apt-vim install -y https://github.com/scrooloose/nerdtree.git
 sudo sh -c 'echo "autocm vimenter * NERDTree" >> ~/.vimrc'
+echo "\n\n...Essentials Installed...\n\n"
+

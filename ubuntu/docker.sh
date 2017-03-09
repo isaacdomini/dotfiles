@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Installing docker"
+echo "\n\n...Installing docker...\n\n"
 sudo apt-get install \
     apt-transport-https \
     ca-certificates \ 
@@ -25,4 +25,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo groupadd docker
 sudo gpasswd -a ${USER} docker
 sudo service docker restart
-
+echo "\n\n...Docker and Docker-Compose Intalled...\n\n"
