@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #install wget
 echo "Installing wget"
 sudo apt-get install wget
