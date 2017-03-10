@@ -4,8 +4,8 @@ curros="unknownos"
 
 unsupported_os()
 {
-  echo "Detected $curros"
-  echo '\n\n\nUnsupported OS, exiting with code 2'
+  printf "Detected $curros"
+  printf "\n\n\nUnsupported OS, exiting with code 2"
   exit 2
 }
 
@@ -44,13 +44,25 @@ else
   unsupported_os
 fi
 
-echo '\n...Installing git...\n'
-
 if [[ "$curros" == "ubuntu" ]]; then
-  sudo apt-get install git
+  printf "\n\n...Installing git and openssh...\n\n"
+  sudo apt-get install git -y
+  sudo apt-get install openssh -y
+  sudo apt-get install openssh-server -y
 elif [[ "$curros" == "arch" ]]; then
+  printf "\n\n...Installing git and openssh...\n\n"
   pacman -S git
+  pacman -S openssh
+  pacman -S openssh-server
+elif [[ "$curros" == "mac" ]]; then
+  printf "\n\n...Installing xcode tools...\n\n"
+  xcode-select --install
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  sudo systemsetup -setremotelogin on
+  sudo dseditgroup -o create -q com.apple.access_ssh
+  sudo dseditgroup -o edit -a admin -t group com.apple.access_ssh  
 else
+  unsupported_os
   exit 3
 fi
  
@@ -79,7 +91,7 @@ if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
   if [[ -d dotfiles ]]; then
     echo "Found dotfiles directory. Running full setup and self destructing"
     rm -f $0   
-    bash dotfiles/fullsetup.sh
+    bash dotfiles/$curros/fullsetup.sh
     exit 0
   fi
   echo "Repository not cloned. Exiting with error code 2"
@@ -87,4 +99,4 @@ if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
 fi
 
 echo "Currently in dotfiles, will not self destruct!. Exiting..."
-exit 0
+exit 0 
