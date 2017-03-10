@@ -5,50 +5,56 @@ curros="unknownos"
 unsupported_os()
 {
   echo "Detected $curros"
-  echo "\n\n\nUnsupported OS, exiting with code 2"
+  echo '\n\n\nUnsupported OS, exiting with code 2'
   exit 2
 }
 
-ostype="win32"
+ostype=$OSTYPE
 if [[ "$ostype" == "linux-gnu" ]]; then
-
   if type "apt-get" &> /dev/null; then
-    curros="ubuntu" 
+    curros="ubuntu"
+  elif type "pacman" &> /dev/null; then
+    curros="arch" 
   elif type "yum" &> /dev/null; then
     curros="fedora"
     unsupported_os
   else
     curros="linux-gnu"
-    unsupported_os()
+    unsupported_os 
   fi
-  continue
-
 elif [[ "$ostype" == "darwin"* ]]; then
   curros = "mac"
 elif [[ "$ostype" == "cygwin" ]]; then
   curros="cygwin"
-  unsupported_os()
+  unsupported_os
 elif [[ "$ostype" == "msys" ]]; then
   # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
   curros="msys"
-  unsupported_os()
+  unsupported_os
 elif [[ "$ostype" == "win32" ]]; then
   # I'm not sure this can happen.
   curros="windows"
-  unsupported_os()
+  unsupported_os
 elif [[ "$ostype" == "freebsd"* ]]; then
   # Freebsd
   curros="freebsd"
-  unsupported_os()
+  unsupported_os
 else
   # Unknown.
-  unsupported_os()
+  unsupported_os
 fi
 
+echo '\n...Installing git...\n'
 
+if [[ "$curros" == "ubuntu" ]]; then
+  sudo apt-get install git
+elif [[ "$curros" == "arch" ]]; then
+  pacman -S git
+else
+  exit 3
+fi
+ 
 
-echo "\n...Installing git...\n"
-sudo apt-get install git
 echo "\n...Generate SSH key...\n"
 ssh-keygen -t rsa -b 4096 -C "me@cyriacdomini.com"
 eval "$(ssh-agent -s)"
