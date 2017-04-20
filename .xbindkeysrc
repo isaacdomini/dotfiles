@@ -48,10 +48,10 @@
     m:0x0 + c:123
     XF86AudioRaiseVolume
 #BRIGHTNESS
-"cp /sys/class/backlight/intel_backlight/max_brightness /sys/class/backlight/intel_backlight/brightness"
+"sudo cp /sys/class/backlight/intel_backlight/max_brightness /sys/class/backlight/intel_backlight/brightness"
     m:0x0 + c:233
     XF86MonBrightnessUp
-"echo 1 > /sys/class/backlight/intel_backlight/brightness"
+"sudo cho 1 | sudo tee /sys/class/backlight/intel_backlight/brightness"
     m:0x0 + c:232
     XF86MonBrightnessDown
 

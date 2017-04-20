@@ -1,0 +1,7 @@
+Description='Home WiFi@OSU'
+Interface=wlp2s0
+Connection=wireless
+Security=wpa
+ESSID=WiFi@OSU
+IP=dhcp
+Key=PASSWORD

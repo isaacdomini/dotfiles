@@ -1,0 +1,16 @@
+Description='OSU Wireless'
+Interface=your-wireless-device
+Connection=wireless
+Security=wpa-configsection
+IP=dhcp
+TimeoutWPA=30
+Priority=priority-number # For use with netctl-auto
+WPAConfigSection=(
+        'ssid="osuwireless"'
+        'key_mgmt=WPA-EAP'
+        'eap=PEAP'
+        'phase2="auth=MSCHAPV2"'
+        'identity="thundathil.4"'
+        'password="PASSWORD"'
+        'ca_cert="/etc/ca-certificates/extracted/cadir/AddTrust_External_Root.pem"'
+)

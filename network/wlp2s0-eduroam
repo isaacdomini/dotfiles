@@ -1,0 +1,15 @@
+Description='eduroam'
+Interface=wlp2s0
+Connection=wireless
+TimeoutWPA=60
+IP=dhcp
+Security=wpa-configsection
+WPAConfigSection=(
+  'ssid="eduroam"'
+  'key_mgmt=WPA-EAP'
+  'eap=PEAP'
+  'identity="thundathil.4@osu.edu"'
+  'password="PASSWORD"'
+  'ca_cert="/etc/ca-certificates/extracted/cadir/AddTrust_External_Root.pem"'
+  'phase2="auth=MSCHAPV2"'
+)

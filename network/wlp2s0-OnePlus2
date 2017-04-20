@@ -1,0 +1,7 @@
+Description='OnePlus2 hotspot'
+Interface=wlp2s0
+Connection=wireless
+Security=wpa
+ESSID=OnePlus2
+IP=dhcp
+Key=dylg2014
