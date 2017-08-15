@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/:bash
 
 curros="unknownos"
 
@@ -51,9 +51,9 @@ if [[ "$curros" == "ubuntu" ]]; then
   sudo apt-get install openssh-server -y
 elif [[ "$curros" == "arch" ]]; then
   printf "\n\n...Installing git and openssh...\n\n"
-  pacman -S git
-  pacman -S openssh
-  pacman -S openssh-server
+  sudo pacman -S git
+  sudo pacman -S openssh
+  sudo pacman -S openssh-server
 elif [[ "$curros" == "mac" ]]; then
   printf "\n\n...Installing xcode tools...\n\n"
   xcode-select --install
