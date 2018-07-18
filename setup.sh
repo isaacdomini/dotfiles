@@ -85,6 +85,8 @@ EOF
 curl -u "cyriacd" --data "$(generate_github_post_curl)" https://api.github.com/user/keys
 
 echo "Cloning dotfiles"
+git config --global user.name "Isaac Domini"
+git config --global user.email me@isaacdomini.com
 git clone git@github.com:cyriacd/dotfiles.git
 
 if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
