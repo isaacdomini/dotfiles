@@ -68,7 +68,7 @@ fi
  
 
 echo "\n...Generate SSH key...\n"
-ssh-keygen -t rsa -b 4096 -C "me@cyriacdomini.com"
+ssh-keygen -t rsa -b 4096 -C "me@isaacdomini.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 sshkeygenerated=`cat ~/.ssh/id_rsa.pub`
