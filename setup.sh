@@ -89,6 +89,8 @@ git config --global user.name "Isaac Domini"
 git config --global user.email me@isaacdomini.com
 git clone git@github.com:cyriacd/dotfiles.git
 
+git config --global commit.gpgsign true
+
 if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
   if [[ -d dotfiles ]]; then
     echo "Found dotfiles directory. Running full setup and self destructing"
