@@ -82,7 +82,7 @@ generate_github_post_curl()
 }
 EOF
 }
-curl -u "cyriacd" --data "$(generate_github_post_curl)" https://api.github.com/user/keys
+curl -u "isaacdomini" --data "$(generate_github_post_curl)" https://api.github.com/user/keys
 
 echo "Cloning dotfiles"
 git config --global user.name "Isaac Domini"
