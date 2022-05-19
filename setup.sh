@@ -58,8 +58,7 @@ elif [[ "$curros" == "mac" ]]; then
   printf "\n\n...Installing xcode tools...\n\n"
   xcode-select --install
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  brew install gh
-  gh auth login
+
   #sudo systemsetup -setremotelogin on
   #sudo dseditgroup -o create -q com.apple.access_ssh
   #sudo dseditgroup -o edit -a admin -t group com.apple.access_ssh  
@@ -70,19 +69,20 @@ fi
  
 
 echo "\n...Generate SSH key...\n"
-ssh-keygen -f ~/.ssh/id_ed25519_auto -t ed25519 -C "7013557+isaacdomini@users.noreply.github.com"
+ssh-keygen -f ~/.ssh/id_ed25519_github -t ed25519 -C "7013557+isaacdomini@users.noreply.github.com"
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519_auto
+ssh-add ~/.ssh/id_ed25519_github
 
 touch ~/.ssh/config
 text="Host *\n  
   AddKeysToAgent yes\n
   UseKeychain yes\n
-  IdentityFile ~/.ssh/id_ed25519_auto"
+  IdentityFile ~/.ssh/id_ed25519_github"
 
 echo -e $text > ~/.ssh/config
   
-gh ssh-key add ~/.ssh/id_ed25519_auto
+brew install gh
+gh auth login
 
 echo "Cloning dotfiles"
 git clone git@github.com:isaacdomini/dotfiles.git
