@@ -70,32 +70,41 @@ fi
  
 
 echo "\n...Generate SSH key...\n"
-ssh-keygen -t ed25519 -C "7013557+isaacdomini@users.noreply.github.com"
+ssh-keygen -f ~/.ssh/id_ed25519_auto -t ed25519 -C "7013557+isaacdomini@users.noreply.github.com"
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_ed25519_auto
 
 touch ~/.ssh/config
 text="Host *\n  
   AddKeysToAgent yes\n
   UseKeychain yes\n
-  IdentityFile ~/.ssh/id_ed25519"
+  IdentityFile ~/.ssh/id_ed25519_auto"
 
 echo -e $text > ~/.ssh/config
   
-gh ssh-key add ~/.ssh/id_ed25519
+gh ssh-key add ~/.ssh/id_ed25519_auto
 
 echo "Cloning dotfiles"
 git clone git@github.com:isaacdomini/dotfiles.git
+
+echo "source ~/dotfiles/defaults" >> ~/.zshrc
 
 git config --global user.name "Isaac Domini"
 git config --global user.email "7013557+isaacdomini@users.noreply.github.com"
 git config --global commit.gpgsign true
 
+
 if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
   if [[ -d dotfiles ]]; then
     echo "Found dotfiles directory. Running full setup and self destructing"
-    rm -f $0   
-    bash dotfiles/$curros/fullsetup.sh
+    rm -f $0
+
+    read -n1 -p "Run full setup? [y,n]" doit 
+    case $doit in  
+      y|Y) bash dotfiles/$curros/fullsetup.sh ;; 
+      n|N) exit 0 ;; 
+      *) exit 0 ;; 
+    esac
     exit 0
   fi
   echo "Repository not cloned. Exiting with error code 2"
