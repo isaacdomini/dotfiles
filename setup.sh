@@ -23,7 +23,7 @@ if [[ "$ostype" == "linux-gnu" ]]; then
     unsupported_os 
   fi
 elif [[ "$ostype" == "darwin"* ]]; then
-  curros = "mac"
+  curros="mac"
 elif [[ "$ostype" == "cygwin" ]]; then
   curros="cygwin"
   unsupported_os
@@ -58,9 +58,11 @@ elif [[ "$curros" == "mac" ]]; then
   printf "\n\n...Installing xcode tools...\n\n"
   xcode-select --install
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  sudo systemsetup -setremotelogin on
-  sudo dseditgroup -o create -q com.apple.access_ssh
-  sudo dseditgroup -o edit -a admin -t group com.apple.access_ssh  
+  brew install gh
+  gh auth login
+  #sudo systemsetup -setremotelogin on
+  #sudo dseditgroup -o create -q com.apple.access_ssh
+  #sudo dseditgroup -o edit -a admin -t group com.apple.access_ssh  
 else
   unsupported_os
   exit 3
@@ -68,27 +70,25 @@ fi
  
 
 echo "\n...Generate SSH key...\n"
-ssh-keygen -t rsa -b 4096 -C "me@isaacdomini.com"
+ssh-keygen -t ed25519 -C "7013557+isaacdomini@users.noreply.github.com"
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-sshkeygenerated=`cat ~/.ssh/id_rsa.pub`
-echo $sshkeygenerated
-generate_github_post_curl()
-{
-  cat <<EOF
-{
-  "title":"$(hostname)",
-  "key":"$sshkeygenerated"
-}
-EOF
-}
-curl -u "isaacdomini" --data "$(generate_github_post_curl)" https://api.github.com/user/keys
+ssh-add ~/.ssh/id_ed25519
+
+touch ~/.ssh/config
+text="Host *\n  
+  AddKeysToAgent yes\n
+  UseKeychain yes\n
+  IdentityFile ~/.ssh/id_ed25519"
+
+echo -e $text > ~/.ssh/config
+  
+gh ssh-key add ~/.ssh/id_ed25519
 
 echo "Cloning dotfiles"
-git config --global user.name "Isaac Domini"
-git config --global user.email me@isaacdomini.com
-git clone git@github.com:cyriacd/dotfiles.git
+git clone git@github.com:isaacdomini/dotfiles.git
 
+git config --global user.name "Isaac Domini"
+git config --global user.email "7013557+isaacdomini@users.noreply.github.com"
 git config --global commit.gpgsign true
 
 if [[ "$(basename ${PWD})" != "dotfiles" ]]; then
