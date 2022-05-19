@@ -87,6 +87,9 @@ gh ssh-key add ~/.ssh/id_ed25519_auto
 echo "Cloning dotfiles"
 git clone git@github.com:isaacdomini/dotfiles.git
 
+brew install romkatv/powerlevel10k/powerlevel10k
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+
 echo "source ~/dotfiles/defaults" >> ~/.zshrc
 
 git config --global user.name "Isaac Domini"
