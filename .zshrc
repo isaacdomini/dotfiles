@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/cyriac/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -84,4 +84,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=/home/cyriac/.rvm/gems/ruby-2.4.0/bin:/home/cyriac/.rvm/gems/ruby-2.4.0@global/bin:/home/cyriac/.rvm/rubies/ruby-2.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/cyriac/.rvm/bin:/home/cyriac/.rvm/bin:/home/cyriac/.vimpkg/bin
+export PATH=$HOME/.rvm/gems/ruby-2.4.0/bin:$HOME/.rvm/gems/ruby-2.4.0@global/bin:$HOME/.rvm/rubies/ruby-2.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.rvm/bin:$HOME/.rvm/bin:$HOME/.vimpkg/bin
